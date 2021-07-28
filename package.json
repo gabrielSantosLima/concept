@@ -1,0 +1,27 @@
+{
+  "name": "concept",
+  "version": "1.0.0",
+  "description": "# O que é?",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabrielSantosLima/concept.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gabrielSantosLima/concept/issues"
+  },
+  "homepage": "https://github.com/gabrielSantosLima/concept#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}

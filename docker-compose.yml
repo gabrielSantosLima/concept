@@ -1,0 +1,11 @@
+version: "3.1"
+services:
+    sql-server:
+        image: mcr.microsoft.com/mssql/server
+        container_name: db  
+        ports:
+            - 1433:1433
+        environment:
+            MSSQL_PID: "Developer"
+            SA_PASSWORD: "CTHM@projeto2021"
+            ACCEPT_EULA: "Y"
