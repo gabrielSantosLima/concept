@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/index.js",
+    "lint": "eslint src --ext js",
     "knex:migrate": "knex --knexfile knexfile.js migrate:latest",
     "knex:rollback": "knex --knexfile knexfile.js migrate:rollback"
   },
@@ -25,6 +26,11 @@
     "tedious": "^11.4.0"
   },
   "devDependencies": {
+    "eslint": "^7.31.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
     "nodemon": "^2.0.12"
   }
 }

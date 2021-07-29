@@ -3,8 +3,8 @@ const cors = require('cors')
 
 const app = express()
 
-app.get('/', (req, resp)=> {
-    return resp.json({ hello: 'world' })
+app.get('/', (req, resp) => {
+	return resp.json({ hello : 'world' })
 })
 
 app.use(cors())
