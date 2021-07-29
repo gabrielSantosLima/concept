@@ -4,14 +4,15 @@
   "description": "# O que é?",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "knex:migrate": "knex --knexfile knexfile.js migrate:latest",
+    "knex:rollback": "knex --knexfile knexfile.js migrate:rollback"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gabrielSantosLima/concept.git"
   },
-  "keywords": [],
-  "author": "",
+  "author": "CTHM",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/gabrielSantosLima/concept/issues"
@@ -19,7 +20,9 @@
   "homepage": "https://github.com/gabrielSantosLima/concept#readme",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "knex": "^0.95.8",
+    "tedious": "^11.4.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.12"

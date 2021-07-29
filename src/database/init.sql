@@ -1,0 +1,2 @@
+CREATE DATABASE concept;
+GO
