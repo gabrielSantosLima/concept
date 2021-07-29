@@ -15,4 +15,8 @@ const connection = knex.knex({
 	useNullAsDefault : true
 })
 
+/* Exportando objeto de conexão com o banco de dados. 
+   Ver em https://knexjs.org/#Builder os métodos disponíveis para o CRUD.
+   Ex: knex('Nome da tabela').select(...).where(...) 
+*/ 
 module.exports = connection

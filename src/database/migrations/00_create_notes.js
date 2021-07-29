@@ -1,5 +1,6 @@
 const tableName = 'notes'
 
+// Método que será executado para criar a tabela de Notas ("notes")
 exports.up = (knex) => {
 	return knex.schema.createTable(tableName, table => {
 		table.increments('id').primary()
@@ -10,6 +11,7 @@ exports.up = (knex) => {
 	})
 }
 
+// Método que será executado quando houver um rollback da migration
 exports.down = (knex) => {
 	return knex.schema.dropTable(tableName)
 }
