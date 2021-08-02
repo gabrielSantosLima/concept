@@ -4,13 +4,13 @@ module.exports = {
 
 	async get() {
 		try {
-            const notes = await db('notes')
-            return notes
-        } catch (error) {
-            console.error(error)
-        }
+			const notes = await db('notes')
+			return notes
+		} catch (error) {
+			console.error(error)
+		}
 	},
-/* 
+	/* 
     get(id){
         db('notes')
         .where('id', id)
@@ -19,7 +19,7 @@ module.exports = {
     },
  */
 	async del(id) {
-        const rows = await db('notes').where('id', id).del()
-        return rows
+		const rows = await db('notes').where('id', id).del()
+		return rows
 	}
 }

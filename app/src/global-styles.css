@@ -1,0 +1,21 @@
+html,body, #root{
+    width: 100%;
+    height: 100%;
+}
+
+*, button, input, textarea{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: 0;
+    font-family: 'Roboto','Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+button, a, i, img, svg{
+    cursor: pointer;
+}
+
+ul{
+    list-style: none;
+}
