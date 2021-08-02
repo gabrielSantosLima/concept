@@ -1,0 +1,40 @@
+.note{
+    background-color: #FFB801;
+    color: #000000;
+    width: 200px;
+    min-height: 220px;
+    max-height: 250px;
+    margin: 10px;
+    padding: 8px;
+    border-radius: 4px;
+    box-shadow: 0px 8px 4px 0px rgba(0, 0, 0, 0.4);
+    position: relative;
+    cursor: pointer;
+    word-break: break-all;
+    overflow: hidden;
+    user-select: none;
+}
+
+.note h2{
+    font-size: 20pt;
+    font-weight: bold;
+}
+
+.note p{
+    font-size: 12pt;
+}
+
+.note .options{
+    display: none;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.note:hover .options{
+    display: block;
+}
+
+.note .options button{
+    background-color: #FFB801;
+}

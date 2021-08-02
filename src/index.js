@@ -8,4 +8,4 @@ app.use('/notes', routes)
 app.use(cors())
 app.use(express.json())
 
-app.listen(3000)
+app.listen(3333)

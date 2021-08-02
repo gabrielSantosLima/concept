@@ -1,6 +1,7 @@
 html,body, #root{
     width: 100%;
     height: 100%;
+    background-color: #F5F5F5;
 }
 
 *, button, input, textarea{
@@ -18,4 +19,8 @@ button, a, i, img, svg{
 
 ul{
     list-style: none;
+}
+
+svg{
+    background-color: transparent;
 }
