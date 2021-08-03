@@ -1,12 +1,15 @@
 import React from 'react'
+import { ToastProvider } from 'react-toast-notifications'
 
 import Routes from './routes'
 
 import './global-styles.css'
 
-function App() {
+const App = () => {
   return (
-    <Routes />
+    <ToastProvider>
+      <Routes />
+    </ToastProvider>
   );
 }
 

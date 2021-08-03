@@ -24,3 +24,11 @@ ul{
 svg{
     background-color: transparent;
 }
+
+::-webkit-scrollbar{
+    width: 12px;
+}
+::-webkit-scrollbar-thumb{
+    border-radius: 8px;
+    background: #8f8d8d;
+}
