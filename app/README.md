@@ -10,4 +10,4 @@ npm install
 npm start
 ```
 
-Acesse o [localhost](http://localhost:3333/) da máquina.
+Acesse o [localhost](http://localhost:3000'/) da máquina.
