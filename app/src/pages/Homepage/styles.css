@@ -8,48 +8,69 @@
 
 }
 
-div{
+.content-homepage{
     background: #FFB801;
     display: grid;
     grid-template-areas:
       "aside main";
-    grid-template-columns: auto auto;
-    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     height:100%;
     width:100%;
 }
 
-  .o-aside {
-    grid-area: aside;
-    display: grid;
-    grid-template-areas:
-      "header header header"
-      "main main main"
-      "footer footer footer";
-    grid-template-columns: auto auto auto;
-    grid-template-rows: 20vh auto auto;
-    padding-top: 20%;
-    padding-left: 25%;
-  }
-
-  button{
-    border-radius: 8px;
-    color: white;
-    background: black;
-    width: 301px;
-    height: 60px;
-  }
-
-  .o-title{
-    grid-area: header;
+.o-aside {
+  grid-area: aside;
+  display: grid;
+  grid-template-areas:
+    "header header header"
+    "main main main"
+    "footer footer footer";
+  grid-template-columns: 1fr auto auto;
+  grid-template-rows: 20vh auto auto;
+  padding-top: 10%;
+  padding-left: 20%;
 }
 
-  .o-content {
-    grid-area: main;
-  }
+button{
+  border-radius: 8px;
+  color: white;
+  background: black;
+  width: 301px;
+  height: 60px;
+}
+
+.o-title{
+  grid-area: header;
+}
+
+.o-title h1{
+  font-size: 32pt;
+}
+
+.o-content {
+  padding: 0;
+  grid-area: main;
+}
+
+.o-content a {
+  font-size: 14pt;
+  font-weight: normal;
+  margin-left: 15px;
+}
 
 .o-botao{
-    grid-area: footer;
+  grid-area: footer;
+}
+
+.o-botao button{
+  font-size: 14pt;
+  font-weight: bold;
+  transition: 0.4s;
+}
+
+.o-botao button:hover{
+  background-color: rgb(8, 8, 8);
 }
 
 .o-main{
@@ -57,6 +78,6 @@ grid-area: main;
 }
 
 img{
-    width: auto;
-    height: auto;
+  width: auto;
+  height: auto;
 }
