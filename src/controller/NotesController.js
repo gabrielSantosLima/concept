@@ -1,3 +1,4 @@
+const { post } = require('../service/NotesService')
 const NotesService = require('../service/NotesService')
 
 module.exports = {
@@ -20,5 +21,18 @@ module.exports = {
 			res.sendStatus(200)
 			// res.status(204).send()
 		}
+	},
+
+	async post(req, res){
+		const {title, content} = req.body
+		const note = await NotesService.post(title, content);
+		res.json(note)
+	},
+
+	async put(req, res){
+		const id = req.params.noteId
+		const {title, content} = req.body
+		const note = await NotesService.put(id, title, content)
+		res.json(note)
 	}
 }
