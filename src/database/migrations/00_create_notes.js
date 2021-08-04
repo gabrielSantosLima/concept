@@ -6,8 +6,6 @@ exports.up = (knex) => {
 		table.increments('id').primary()
 		table.string('title').notNullable()
 		table.text('content').notNullable()
-		table.string('hexColor').notNullable()
-		table.date('date').defaultTo(Date.now())
 	})
 }
 

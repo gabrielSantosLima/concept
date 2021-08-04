@@ -21,5 +21,18 @@ module.exports = {
 	async del(id) {
         const rows = await db('notes').where('id', id).del()
         return rows
-	}
+	},
+    
+    //Save
+    async post(title, content){
+        const note = await db('notes').returning('id').insert({title, content})
+        return note
+    },
+
+    //Update
+    async put(id, title, content){
+        const note = await db('notes').returning('id').where('id', id).update({title, content}, ['id', 'title', 'content'])
+        return note
+    }
+    
 }

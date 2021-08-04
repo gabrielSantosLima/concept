@@ -4,7 +4,9 @@ const routes = require('./routes')
 
 const app = express()
 
-app.use('/notes', routes)
-app.use(cors())
+
 app.use(express.json())
-app.listen(process.env.PORT || 3000)
+app.use(cors())
+app.use('/notes', routes)
+
+app.listen(3333)
