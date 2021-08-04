@@ -19,7 +19,11 @@ module.exports = {
     },
  */
 	async del(id) {
-		const rows = await db('notes').where('id', id).del()
-		return rows
+		try {
+			const rows = await db('notes').where({id: id}).del()
+			return rows
+		} catch(error) {
+			console.error(error);
+		}
 	}
 }

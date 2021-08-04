@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AiOutlinePlus as PlusIcon } from 'react-icons/ai'
 import { BiArrowBack as BackIcon } from 'react-icons/bi'
+import { useToasts } from 'react-toast-notifications';
 import { useHistory } from 'react-router-dom'
 
 import Note from '../../components/Note'
@@ -11,83 +12,67 @@ import './styles.css'
 import ViewNoteModal from '../../components/ViewNoteModal';
 import AddNoteModal from '../../components/AddNoteModal';
 
-// dados temporários
-const notes = [
-  {
-    id: 1,
-    title: 'RFID',
-    content: 'Parada de restreamento'
-  },
-  {
-    id: 2,
-    title: 'IFAM',
-    content: 'Local de dor e sofrimento para a futura redenção :)'
-  },
-  {
-    id: 3,
-    title: 'Canção do exílio',
-    content: `
-    Minha terra tem palmeiras,
-    Onde canta o Sabiá;
-    As aves, que aqui gorjeiam,
-    Não gorjeiam como lá.
-    
-    Nosso céu tem mais estrelas,
-    Nossas várzeas têm mais flores,
-    Nossos bosques têm mais vida,
-    Nossa vida mais amores.
-    
-    Em cismar, sozinho, à noite,
-    Mais prazer eu encontro lá;
-    Minha terra tem palmeiras,
-    Onde canta o Sabiá.
-    
-    Minha terra tem primores,
-    Que tais não encontro eu cá;
-    Em cismar –sozinho, à noite–
-    Mais prazer eu encontro lá;
-    Minha terra tem palmeiras,
-    Onde canta o Sabiá.
-    
-    Não permita Deus que eu morra,
-    Sem que eu volte para lá;
-    Sem que desfrute os primores
-    Que não encontro por cá;
-    Sem qu'inda aviste as palmeiras,
-    Onde canta o Sabiá`
-  }
-]
+async function fetchNotes(){
+  return await fetch('http://localhost:3333/notes').then(response => response.json())
+}
 
 const ListNotes = () => {
   const history = useHistory()
+  const { addToast } = useToasts()
+
   const [ showViewNoteModal, setShowViewNoteModal ] = useState(false)
   const [ showAddNoteModal, setShowAddNoteModal ] = useState(false)
 
   const [ noteForViewModal, setNoteForModal ] = useState({})
+  
+  const [ notes, setNotes] = useState(null)
+  const [ errorNotes, setErrorNotes] = useState(null)
+  const [ loadingNotes, setLoadingNotes] = useState(true)
 
   function handleBack(){
-    // voltar para a página inicial 
     history.push('/')
    }
 
   function handleAddNote(){
-    // mostrar modal de adicionar nota.
     handleAddNoteExpanded()
   }
-  
+
   function handleAddNoteExpanded(){
-    // mostrar modal de adicionar nota.
     setShowAddNoteModal(true)
   }
 
   function handleShowNote(event, note){
-    // mostrar descrição de uma nota
     const { className } = event.target
     if(["note", "title", "content"].includes(className)){
       setNoteForModal(note)
       setShowViewNoteModal(true)
     }
   }
+
+  async function getNotes(){
+    try {
+      setLoadingNotes(true)
+      const data = await fetchNotes()
+      setNotes(data)
+    } catch(err) {
+      setErrorNotes(err)
+    } finally {
+      setLoadingNotes(false)
+    }
+  }
+
+  useEffect(() => {
+    getNotes()
+  }, [])
+
+
+  useEffect(() => {
+    if(errorNotes) {
+      addToast('Erro ao carregar suas notas!', { appearance: 'error', autoDismiss: true })
+    } else if(!loadingNotes) {
+      addToast('Notas carregadas!', { appearance: 'success', autoDismiss: true, autoDismissTimeout: 2000 })
+    }
+  }, [errorNotes, loadingNotes])
 
   return(
       <>
@@ -111,7 +96,8 @@ const ListNotes = () => {
             
             <div className="notes">
               {
-                notes.map(note => {
+                errorNotes || loadingNotes ? null 
+                : notes.map(note => {
                   return <Note 
                     key={note.id} 
                     note={note}

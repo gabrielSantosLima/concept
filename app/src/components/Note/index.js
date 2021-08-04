@@ -1,16 +1,25 @@
 import React from 'react';
 import { BiTrash as TrashIcon } from 'react-icons/bi'
-import { useToasts } from 'react-toast-notifications';
+import { useToasts } from 'react-toast-notifications'
 
 import './styles.css'
+
+async function deleteNote(id) {
+  return await fetch(`http://localhost:3333/notes/${id}`, { method: 'DELETE' }).then(res => res.status)
+}
 
 const Note = ({ note, onClick }) => {
   const { id, title, content } = note
   const { addToast } = useToasts()
 
-  function handleDeleteNote(id){
-    // deletar nota na API
-    addToast(`Nota excluída com sucesso!`, { appearance: 'info', autoDismiss: true })
+  async function handleDeleteNote(id) {
+    await deleteNote(id).then(status => {
+      if(status === 200) {
+        addToast(`Nota ${id} excluída.`, { appearance: 'info', autoDismiss: true })
+      } else {
+        addToast(`Erro ao deletar nota!`, { appearance: 'error', autoDismiss: true })
+      }
+    })
   }
 
   return(

@@ -10,6 +10,7 @@ module.exports = {
 
 	async del(req, res) {
 		const id = req.params.noteId
+		console.log(id)
 		const rows = await NotesService.del(id)
 		console.log(`Deleted ${rows} rows`)
 
