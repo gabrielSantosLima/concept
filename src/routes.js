@@ -9,7 +9,8 @@ routes.delete('/:noteId(\\d+)', NotesController.del)
 
 routes.post('/', NotesController.post)
 
-routes.put('/:noteId(\d+)', NotesController.put)
+routes.put('/:noteId(\\d+)', NotesController.put)
+
 /* 
  routes.param('noteId', function(req, res, next, id) {
     NotesService.get(id)
