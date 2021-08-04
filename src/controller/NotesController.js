@@ -11,7 +11,7 @@ module.exports = {
 
 	async del(req, res) {
 		const id = req.params.noteId
-		//Chama a funçao del da classe notes service
+		console.log(id)
 		const rows = await NotesService.del(id)
 		console.log(`Deleted ${rows} rows`)
 

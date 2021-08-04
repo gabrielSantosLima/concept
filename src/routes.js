@@ -5,7 +5,7 @@ const NotesController = require('./controller/NotesController')
 
 routes.get('/', NotesController.get)
 
-routes.delete('/:noteId(\d+)', NotesController.del)
+routes.delete('/:noteId(\\d+)', NotesController.del)
 
 routes.post('/', NotesController.post)
 

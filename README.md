@@ -21,6 +21,8 @@ npm install
 npm run dev
 ```
 
+Acessar o [localhost](http://localhost:3333) da máquina.
+
 ### Base de Dados ( Docker )
 Com o [Docker](https://www.docker.com/get-started) rodando e depois de instalado o [Docker Compose](https://docs.docker.com/compose/), execute o comando na raiz do projeto:
 

@@ -1,12 +1,15 @@
-import './App.css';
+import React from 'react'
+import { ToastProvider } from 'react-toast-notifications'
 
-function App() {
+import Routes from './routes'
+
+import './global-styles.css'
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Concept</h1>
-      </header>
-    </div>
+    <ToastProvider>
+      <Routes />
+    </ToastProvider>
   );
 }
 

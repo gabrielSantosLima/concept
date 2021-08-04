@@ -1,0 +1,22 @@
+.new-note{
+    color: #000000;
+    width: 200px;
+    height: 220px;
+    margin: 10px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px dashed #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+.new-note:hover{
+    background-color: #ffb70126;
+}
+
+.new-note button{
+    background-color: transparent;
+}
