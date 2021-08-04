@@ -1,25 +1,45 @@
 const db = require('../database/connection')
 
 module.exports = {
-
-	async get() {
-		try {
-			const notes = await db('notes')
-			return notes
-		} catch (error) {
-			console.error(error)
-		}
-	},
-	/* 
-    get(id){
+    async get() {
+        try {
+            const notes = await db('notes')
+            return notes
+        } catch (error) {
+            console.error(error)
+        }
+    },
+    /* 
+      async get(id){
         db('notes')
         .where('id', id)
         .then(notes => { return notes[0] })
         .catch(error => { console.error(error) })
+      },
+    */
+    async del(id) {
+        try {
+            const rows = await db('notes').where({ id: id }).del()
+            return rows
+        } catch (error) {
+            console.error(error);
+        }
     },
- */
-	async del(id) {
-		const rows = await db('notes').where('id', id).del()
-		return rows
-	}
+
+    async post(title, content) {
+        const currentDate = new Date().toISOString().split('T')[0]
+        const note = await db('notes').insert({ 
+            title: title,
+            content: content,
+            date: currentDate,
+            hexColor: 'FFB801' 
+        }, ['id', 'title', 'content'])
+        return note
+    },
+
+    async put(id, title, content) {
+        const note = await db('notes').where({ id: id }).update({ title, content }, ['id', 'title', 'content'])
+        return note
+    }
+
 }
