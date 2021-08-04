@@ -22,13 +22,13 @@ const Homepage = () => {
         <a> Organize suas ideias em um só lugar.</a>
       </main>
       <footer className="o-botao">
-        <button onClick={handleListNotesPage}>
+        <button className="next-page" onClick={handleListNotesPage}>
           Ir para as minhas notas
         </button>
       </footer>
       </aside>
       <main className="o-main">
-        <img src={LandingImage} alt="Página Inicial" />
+        <img classname="home-image" src={LandingImage} alt="Página Inicial" />
       </main>
     </div>
   );
