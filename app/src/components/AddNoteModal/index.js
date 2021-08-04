@@ -4,7 +4,9 @@ import { useToasts } from 'react-toast-notifications'
 
 import './styles.css'
 
-function AddNoteModal({ onClose }) {
+import { createNote } from '../../api'
+
+function AddNoteModal({ onSave, onClose }) {
     const [ visible, setVisible ] = useState(true)
     const { addToast } = useToasts()
     
@@ -15,30 +17,31 @@ function AddNoteModal({ onClose }) {
         contentRef.current.focus()
     }, [])
 
-    function handleAddNote(){
-        // salvar nota na API
+    async function handleAddNote(){
         const title = titleRef.current.innerText
         const content = contentRef.current.innerText
 
         const isNotBlank = title || content
 
-        if(isNotBlank){
-            // código de salvar aqui
-            addToast("Nota salva com sucesso!", { appearance: 'success', autoDismiss: true })
+        if(isNotBlank) {
+            await createNote(title, content).then(note => {
+                if(note) {
+                    onSave(note)
+                    addToast(`Nota ${note.id} criada com sucesso!`, { appearance: 'success', autoDismiss: true, autoDismissTimeout: 2500 })
+                }
+            })
             return handleCloseModal()
         }
 
-        addToast("Erro ao cadastrar nota! Tente novamente.", { appearance: 'error', autoDismiss: true })
+        addToast("Erro ao criar nota! Tente novamente.", { appearance: 'error', autoDismiss: true })
     }
 
     function handleCloseModal(){
-        // Fechar modal
         setVisible(false)
         onClose()
     }
 
     function handleBackgroundClick(event){
-        // Fechar modal pelo background
         const { className } = event.target
         if(className === 'background-blur'){
             handleAddNote()

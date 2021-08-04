@@ -5,27 +5,38 @@ import { useToasts } from 'react-toast-notifications';
 
 import './styles.css'
 
-function ViewNoteModal({ note = {}, onClose }) {
+import { updateNote, deleteNote } from '../../api'
+
+function ViewNoteModal({ note = {}, onClose, onDelete }) {
     const [ visible, setVisible ] = useState(true)
     const { addToast } = useToasts()
 
     const titleRef = useRef(null)
     const contentRef = useRef(null)
 
-    function handleDeleteNote(id){
-        // deletar nota na API
-        addToast("Nota excluída com sucesso!", { appearance: 'info', autoDismiss: true })
+    async function handleDeleteNote(id){
+        await deleteNote(id).then(status => {
+            if(status === 200 || status === 204) {
+              onDelete()
+              addToast(`Nota ${id} excluída.`, { appearance: 'info', autoDismiss: true, autoDismissTimeout: 2000 })
+            } else {
+              addToast(`Erro ao deletar nota!`, { appearance: 'error', autoDismiss: true })
+            }
+          })
         handleCloseModal()
     }
 
     function handleCloseModal(){
-        // Fechar modal
+        note.title = titleRef.current.innerText
+        note.content = contentRef.current.innerText
+
+        updateNote(note.id, note.title, note.content)
+
         setVisible(false)
         onClose()
     }
 
     function handleBackgroundClick(event){
-        // Fechar modal pelo background
         const { className } = event.target
         if(className === 'background-blur'){
             handleCloseModal()

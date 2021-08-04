@@ -4,18 +4,17 @@ import { useToasts } from 'react-toast-notifications'
 
 import './styles.css'
 
-async function deleteNote(id) {
-  return await fetch(`http://localhost:3333/notes/${id}`, { method: 'DELETE' }).then(res => res.status)
-}
+import { deleteNote } from '../../api';
 
-const Note = ({ note, onClick }) => {
+const Note = ({ note, onClick, onDelete }) => {
   const { id, title, content } = note
   const { addToast } = useToasts()
 
-  async function handleDeleteNote(id) {
+  async function handleDeleteNote() {
     await deleteNote(id).then(status => {
-      if(status === 200) {
-        addToast(`Nota ${id} excluída.`, { appearance: 'info', autoDismiss: true })
+      if(status === 200 || status === 204) {
+        onDelete()
+        addToast(`Nota ${id} excluída.`, { appearance: 'info', autoDismiss: true, autoDismissTimeout: 2000 })
       } else {
         addToast(`Erro ao deletar nota!`, { appearance: 'error', autoDismiss: true })
       }
@@ -29,7 +28,7 @@ const Note = ({ note, onClick }) => {
         <div className="options">
           <button 
             className="delete-note-button" 
-            onClick={() => handleDeleteNote(id)}
+            onClick={() => handleDeleteNote()}
           >
             <TrashIcon size={24}/>
           </button>
