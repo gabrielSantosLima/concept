@@ -27,7 +27,7 @@ function AddNoteModal({ onSave, onClose }) {
             await createNote(title, content).then(note => {
                 if(note) {
                     onSave(note)
-                    addToast(`Nota ${note.id} criada com sucesso!`, { appearance: 'success', autoDismiss: true, autoDismissTimeout: 2500 })
+                    addToast(`Nota criada com sucesso!`, { appearance: 'success', autoDismiss: true, autoDismissTimeout: 2500 })
                 }
             })
             return handleCloseModal()

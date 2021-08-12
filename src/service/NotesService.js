@@ -27,12 +27,9 @@ module.exports = {
     },
 
     async post(title, content) {
-        const currentDate = new Date().toISOString().split('T')[0]
         const note = await db('notes').insert({ 
             title: title,
-            content: content,
-            date: currentDate,
-            hexColor: 'FFB801' 
+            content: content 
         }, ['id', 'title', 'content'])
         return note
     },
